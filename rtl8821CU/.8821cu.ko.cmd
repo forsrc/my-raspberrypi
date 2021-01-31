@@ -1,0 +1,1 @@
+cmd_/home/pi/git/rtl8821CU/8821cu.ko := ld -r  -EL  -maarch64elf  --build-id=sha1  -T scripts/module.lds -o /home/pi/git/rtl8821CU/8821cu.ko /home/pi/git/rtl8821CU/8821cu.o /home/pi/git/rtl8821CU/8821cu.mod.o;  true
