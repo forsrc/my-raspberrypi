@@ -8,6 +8,5 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-
-sudo kubeadm join 192.168.1.10:6443 --token wrj4wh.s87k1du00n6nkdtb \
-    --discovery-token-ca-cert-hash sha256:65e973c7b821cd23cca0e1a48f1bf8acbb89e78efee4b80f78d11af8a9822533
+sudo kubeadm join 192.168.1.10:6443 --token zfgd63.0de6cs85uuqhg61v \
+    --discovery-token-ca-cert-hash sha256:3b298ef7fca01fcacaebd7204aefcd9af3ba5208d42c3f5863b9d5728afda7a1
