@@ -10,3 +10,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 sudo kubeadm join 192.168.1.10:6443 --token zfgd63.0de6cs85uuqhg61v \
     --discovery-token-ca-cert-hash sha256:3b298ef7fca01fcacaebd7204aefcd9af3ba5208d42c3f5863b9d5728afda7a1
+
+
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
