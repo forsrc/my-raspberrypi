@@ -4,7 +4,7 @@ sudo snap install core
 
 sudo snap install maas
 
-##########################33
+##########################
 
 
 sudo systemctl status snap.maas.supervisor.service
