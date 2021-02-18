@@ -8,15 +8,17 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-sudo kubeadm join 192.168.1.10:6443 --token pltbdz.b7lx5bexp4b4ogjy \
-    --discovery-token-ca-cert-hash sha256:7269e19bb44dbedd0e6b2d42d62c24c60994905ea0afd16598065c4ceaa70539
+sudo kubeadm join 192.168.1.10:6443 --token jyqzu7.70nf8lndjtave03a \
+    --discovery-token-ca-cert-hash sha256:cb3b7c1fedec6c7f2cf304359fd7be1a1a7dd4ee4f8bb0854827d57ed5fc5694
 
 
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
 
+############################
+apt-get install bridge-utils -y
 
-kubeadm reset
+kubeadm reset -f
 systemctl stop kubelet
 systemctl stop docker
 
@@ -28,7 +30,11 @@ ifconfig del cni0
 ip link del flannel.1
 ip link del cni0
 
-apt-get install bridge-utils -y
+
 brctl delbr flannel.1
 brctl delbr cni0
 rm -rf /var/lib/cni/flannel/* && rm -rf /var/lib/cni/networks/cbr0/* && ip link delete cni0 && rm -rf /var/lib/cni/network/cni0/*
+
+
+apt remove -y kubelet kubeadm kubectl
+apt-get install -y kubelet kubeadm kubectl
