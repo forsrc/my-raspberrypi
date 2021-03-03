@@ -35,7 +35,7 @@ iface wlan0 inet dhcp
 # /etc/dhcp/dhcpd.conf
 # configuration for the bridge internal subnet.
 subnet 10.10.10.0 netmask 255.255.255.0 {
-  range 10.10.10.101 10.10.10.119;
+  range 10.10.10.100 10.10.10.200;
   option domain-name-servers 8.8.8.8;
   option domain-name "domain.local";
   option routers 10.10.10.1;
