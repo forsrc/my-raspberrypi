@@ -121,7 +121,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-arm64/
-export HADOOP_HOME=/media/nfs/pi/hadoop/hadoop-3.3.0
+export HADOOP_HOME=/media/nfs/pi/tools/hadoop/hadoop-3.3.0
 export PATH=$PATH:$HADOOP_HOME/bin
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/`hostname`
 
