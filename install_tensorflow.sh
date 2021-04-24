@@ -12,5 +12,8 @@ pip3 install -U --user six wheel mock
 wget "https://raw.githubusercontent.com/PINTO0309/Tensorflow-bin/master/tensorflow-2.4.0-cp37-none-linux_aarch64_download.sh"
 ./tensorflow-2.4.0-cp37-none-linux_aarch64_download.sh
 
+wget "https://raw.githubusercontent.com/PINTO0309/Tensorflow-bin/master/tensorflow-2.4.0-cp37-none-linux_armv7l_download.sh"
+./tensorflow-2.4.0-cp37-none-linux_armv7l_download.s
+
 sudo pip3 uninstall tensorflow
 sudo -H pip3 install tensorflow-2.4.0-cp37-none-linux_aarch64.whl
