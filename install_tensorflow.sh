@@ -1,3 +1,5 @@
+sudo python3.7 -m pip install pip
+
 sudo apt-get install -y libhdf5-dev libc-ares-dev libeigen3-dev gcc gfortran python-dev libgfortran5 \
                           libatlas3-base libatlas-base-dev libopenblas-dev libopenblas-base libblas-dev \
                           liblapack-dev cython libatlas-base-dev openmpi-bin libopenmpi-dev python3-dev python3-numpy
