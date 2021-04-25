@@ -2,10 +2,11 @@ sudo apt-get install -y libhdf5-dev libc-ares-dev libeigen3-dev gcc gfortran pyt
                           libatlas3-base libatlas-base-dev libopenblas-dev libopenblas-base libblas-dev \
                           liblapack-dev cython libatlas-base-dev openmpi-bin libopenmpi-dev python3-dev python3-numpy
 
+sudo pip3 install h5py==2.10.0
 sudo pip3 install keras_applications==1.0.8 --no-deps
 sudo pip3 install keras_preprocessing==1.1.0 --no-deps
-sudo pip3 install --upgrade numpy
-sudo pip3 install h5py==2.10.0
+#sudo pip3 install --upgrade numpy
+
 sudo pip3 install pybind11
 pip3 install -U --user six wheel mock
 
