@@ -5,7 +5,7 @@ sudo apt-get install -y libhdf5-dev libc-ares-dev libeigen3-dev gcc gfortran lib
                           liblapack-dev cython libatlas-base-dev openmpi-bin libopenmpi-dev python3.7-dev
 #sudo pip3 install numpy==1.18.5
 sudo pip3 install numpy==1.19.5
-sudo pip3 install grpcio==1.32.0
+sudo pip3 install grpcio==1.37.0
 #sudo pip3 install scipy 
 sudo pip3 install h5py==2.10.0
 sudo pip3 install keras_applications==1.0.8 --no-deps
