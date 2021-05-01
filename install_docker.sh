@@ -2,6 +2,7 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 
 
+sudo service docker stop
 
 sudo vim /etc/docker/daemon.json
 
