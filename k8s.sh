@@ -12,9 +12,8 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-sudo kubeadm join 192.168.1.10:6443 --token jyqzu7.70nf8lndjtave03a \
-    --discovery-token-ca-cert-hash sha256:cb3b7c1fedec6c7f2cf304359fd7be1a1a7dd4ee4f8bb0854827d57ed5fc5694
-
+kubeadm join 192.168.1.10:6443 --token weicmw.p6q7a6heydi79rn9 \
+        --discovery-token-ca-cert-hash sha256:ea5cb737c00ff83916c8679d7fcf8609baced55b23a48c78b65142902884e3ae
 
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
