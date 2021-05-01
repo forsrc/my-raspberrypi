@@ -1,5 +1,8 @@
 #  /boot/cmdline.txt   +++ cgroup_enable=cpuset cgroup_enable=memory
 
+sudo systemctl disable dphys-swapfile.service
+sudo swapoff -a
+
 sudo systemctl start systemd-resolved
 
 sudo kubeadm init  --pod-network-cidr=10.244.0.0/16  --apiserver-advertise-address=0.0.0.0 --apiserver-cert-extra-sans=192.168.1.10,192.168.2.10 --ignore-preflight-errors=all
