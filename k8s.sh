@@ -3,6 +3,7 @@
 sudo systemctl disable dphys-swapfile.service
 sudo swapoff -a
 
+sudo systemctl enable systemd-resolved
 sudo systemctl start systemd-resolved
 
 source <(kubectl completion bash)
