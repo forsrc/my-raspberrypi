@@ -25,7 +25,20 @@ sudo vim /etc/dhcpcd.conf
 denyinterfaces wlan0 eth0
 #interface xxx
 
+interface wlan1
+    static ip_address=192.168.10.1/24
+    nohook wpa_supplicant
+
 interface br0
+
+
+sudo vim /etc/sysctl.d/routed-ap.conf
+
+# https://www.raspberrypi.org/documentation/configuration/wireless/access-point-routed.md
+# Enable IPv4 routing
+net.ipv4.ip_forward=1
+
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 sudo rfkill unblock wlan
 
@@ -45,4 +58,16 @@ wpa_passphrase=abc123$%
 wpa_key_mgmt=WPA-PSK
 wpa_pairwise=TKIP
 rsn_pairwise=CCMP
+
+
+sudo apt-get install dnsmasq
+
+sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.bak
+sudo vim /etc/dnsmasq.conf
+interface=wlan1 # Listening interface
+dhcp-range=192.168.10.2,192.168.10.20,255.255.255.0,24h
+                # Pool of IP addresses served via DHCP
+domain=wlan     # Local wireless DNS domain
+address=/gw.wlan/192.168.10.1
+                # Alias for this router
 
