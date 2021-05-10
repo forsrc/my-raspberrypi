@@ -1,46 +1,32 @@
-import numpy as np
-import cv2
+import io
 import socket
-class VideoStreamingTest(object):
-    def __init__(self, host, port):
+import struct
+import time
+import picamera
+# create socket and bind host
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client_socket.connect(('192.168.2.20', 8000))
+connection = client_socket.makefile('wb')
  
-        self.server_socket = socket.socket()
-        self.server_socket.bind((host, port))
-        self.server_socket.listen(0)
-        self.connection, self.client_address = self.server_socket.accept()
-        self.connection = self.connection.makefile('rb')
-        self.host_name = socket.gethostname()
-        self.host_ip = socket.gethostbyname(self.host_name)
-        self.streaming()
- 
-    def streaming(self):
- 
-        try:
-            print("Host: ", self.host_name + ' ' + self.host_ip)
-            print("Connection from: ", self.client_address)
-            print("Streaming...")
-            print("Press 'q' to exit")
- 
-            # need bytes here
-            stream_bytes = b' '
-            while True:
-                stream_bytes += self.connection.read(1024)
-                first = stream_bytes.find(b'\xff\xd8')
-                last = stream_bytes.find(b'\xff\xd9')
-                if first != -1 and last != -1:
-                    jpg = stream_bytes[first:last + 2]
-                    stream_bytes = stream_bytes[last + 2:]
-                    image = cv2.imdecode(np.frombuffer(jpg, dtype=np.uint8), cv2.IMREAD_COLOR)
-                    cv2.imshow('image', image)
-                    if cv2.waitKey(1) & 0xFF == ord('q'):
-                        break
-        finally:
-            self.connection.close()
-            self.server_socket.close()
- 
- 
-if __name__ == '__main__':
-    # host, port
-    h, p = "192.168.2.20", 8000
-    VideoStreamingTest(h, p)
-
+try:
+    with picamera.PiCamera() as camera:
+        camera.resolution = (800, 600)      # pi camera resolution
+        camera.framerate = 50               # 15 frames/sec
+        time.sleep(2)                       # give 2 secs for camera to initilize
+        start = time.time()
+        stream = io.BytesIO()
+        
+        # send jpeg format video stream
+        for foo in camera.capture_continuous(stream, 'jpeg', use_video_port = True):
+            connection.write(struct.pack('<L', stream.tell()))
+            connection.flush()
+            stream.seek(0)
+            connection.write(stream.read())
+            if time.time() - start > 600:
+                break
+            stream.seek(0)
+            stream.truncate()
+    connection.write(struct.pack('<L', 0))
+finally:
+    connection.close()
+    client_socket.close()
