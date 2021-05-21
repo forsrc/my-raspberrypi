@@ -50,6 +50,9 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 ## add - --kubelet-insecure-tls
 - --kubelet-insecure-tls
 
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
+
+
 ############################
 apt-get install bridge-utils -y
 
