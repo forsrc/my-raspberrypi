@@ -49,7 +49,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D OPENCV_PC_FILE_NAME=opencv.pc \
 -D OPENCV_ENABLE_NONFREE=ON \
 -D OPENCV_PYTHON3_INSTALL_PATH=~/.virtualenvs/cv/lib/python3.6/site-packages \
--D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-4.5.1/modules \
+-D OPENCV_EXTRA_MODULES_PATH=/git/opencv_contrib-4.5.1/modules/ \
 -D PYTHON_EXECUTABLE=~/.virtualenvs/cv/bin/python \
 -D BUILD_EXAMPLES=ON ..
 
