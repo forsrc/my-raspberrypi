@@ -54,7 +54,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D BUILD_EXAMPLES=ON ..
 
 
-make -j8
+make -j4
 
 sudo make install
 sudo ldconfig
