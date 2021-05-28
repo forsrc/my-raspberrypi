@@ -23,6 +23,13 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source /usr/local/bin/virtualenvwrapper.sh
 source ~/.bashrc
 
+export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-arm64
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export ANT_HOME=/usr/share/ant
+export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
+
+
+
 mkvirtualenv cv -p python3
 
 pip install numpy
@@ -51,6 +58,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D OPENCV_PYTHON3_INSTALL_PATH=~/.virtualenvs/cv/lib/python3.6/site-packages \
 -D OPENCV_EXTRA_MODULES_PATH=/git/opencv_contrib-4.5.1/modules/ \
 -D PYTHON_EXECUTABLE=~/.virtualenvs/cv/bin/python \
+-D BUILD_SHARED_LIBS=ON /
 -D BUILD_EXAMPLES=ON ..
 
 
