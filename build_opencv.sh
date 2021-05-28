@@ -24,8 +24,8 @@ source /usr/local/bin/virtualenvwrapper.sh
 source ~/.bashrc
 
 export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-arm64
-export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-export ANT_HOME=/usr/share/ant
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:/usr/local/share/java/opencv4
+export ANT_HOME=/media/nfs/pi/tools/apache-ant-1.9.15
 export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 
 
