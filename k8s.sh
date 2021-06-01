@@ -16,8 +16,8 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-sudo kubeadm join 192.168.1.10:6443 --token kk9byi.yurlcdxd3n38n7nv \
-        --discovery-token-ca-cert-hash sha256:06e42a60dcccc62e90e1722388d41c67ebe402805ca590c32394a3ad223a8e3c  --ignore-preflight-errors=all
+sudo kubeadm join 192.168.1.10:6443 --token edmtvn.8at086ar9c7f94uw \
+        --discovery-token-ca-cert-hash sha256:d78e8cac64226ca303bd8021dea21505e1402d14262868a69f65c65c77e7bd34  --ignore-preflight-errors=all
 
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
@@ -48,6 +48,7 @@ EOF
 
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ## add - --kubelet-insecure-tls
+kubectl edit deployments.apps -n kube-system metrics-server
 - --kubelet-insecure-tls
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
