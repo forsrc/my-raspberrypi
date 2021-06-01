@@ -46,6 +46,10 @@ subjects:
   namespace: kubernetes-dashboard
 EOF
 
+## add --sidecar-host=protocol://address:port
+kubectl edit deployments.apps -n kubernetes-dashboard kubernetes-dashboard
+- --sidecar-host=protocol://address:port
+
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ## add - --kubelet-insecure-tls
 kubectl edit deployments.apps -n kube-system metrics-server
