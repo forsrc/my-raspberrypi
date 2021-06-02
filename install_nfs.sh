@@ -11,7 +11,9 @@ sudo vim  /etc/exports
 
 sudo vim /etc/fstab
 
-pi-00:/media/nfs/pi/   /media/nfs/pi   nfs    auto,users,x-systemd.automount,vers=4,nofail  0  0
+#pi-00:/media/nfs/pi/   /media/nfs/pi   nfs    auto,users,x-systemd.automount,vers=4,nofail  0  0
+
+pi-00:/media/nfs/pi/   /media/nfs/pi   nfs    auto,nolock,rsize=32768,wsize=32768,users,x-systemd.automount,vers=4,nofail  0  0
 
 
 
