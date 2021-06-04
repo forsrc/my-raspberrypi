@@ -21,6 +21,7 @@ sudo kubeadm join 192.168.1.10:6443 --token rfj1s9.ju792gulg6w8vcii \
         --discovery-token-ca-cert-hash sha256:3c824e95411ad9118461d1646f7a313943bef1afa56818c19394998e8cf8e0c6 --ignore-preflight-errors=all
 
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.2.0/aio/deploy/recommended.yaml
