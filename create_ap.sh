@@ -43,3 +43,18 @@ wpa_cli -i wlan1 disable_network 0
 sudo ifconfig wlan1 down
 sudo create_ap --driver=nl80211 wlan1 wlan0 zero abc123$%
 
+##########################
+ sudo echo "1">/proc/sys/net/ipv4/ip_forward
+ 
+ sudo nano /etc/sysctl.conf
+ net.ipv4.ip_forward = 1
+ 
+ 
+ sudo sysctl -p
+#########################
+sudo iptables -F
+sudo iptables -P INPUT ACCEPT
+sudo iptables -P FORWARD ACCEPT
+sudo iptables -t nat -A POSTROUTING -s  172.17.0.0/16  -o eth0 -j MASQUERADE
+
+
