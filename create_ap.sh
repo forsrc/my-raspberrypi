@@ -40,6 +40,6 @@ USE_PSK=0
 
 #####################################
 wpa_cli -i wlan1 disable_network 0
-
-sudo create_ap wlan1 wlan0 zero abc123$%
+sudo ifconfig wlan1 down
+sudo create_ap --driver=nl80211 wlan1 wlan0 zero abc123$%
 
