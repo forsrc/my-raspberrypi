@@ -37,6 +37,29 @@ PASSPHRASE=abc123$%
 USE_PSK=0
 
 
+#################################
+sudo nano /lib/systemd/system/create_ap.service
+
+
+[Unit]
+Description=Create AP Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStartPre=/usr/sbin/wpa_cli -i wlan1 disable_network all
+ExecStart=/usr/bin/create_ap --config /etc/create_ap.conf
+ExecStartPost=/usr/sbin/wpa_cli -i wlan1 disable_network all
+KillSignal=SIGINT
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+
+sudo systemctl daemon-reload
+sudo systemctl restart create_ap.service
 
 #####################################
 sudo /usr/sbin/wpa_cli -i wlan1 disable_network all
