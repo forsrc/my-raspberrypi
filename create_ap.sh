@@ -39,7 +39,7 @@ USE_PSK=0
 
 
 #####################################
-sudo wpa_cli -i wlan1 disable_network all
+sudo /usr/sbin/wpa_cli -i wlan1 disable_network all
 sudo ifconfig wlan1 down
 sudo create_ap --driver=nl80211 wlan1 wlan0 zero abc123$%
 
