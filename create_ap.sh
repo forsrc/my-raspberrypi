@@ -1,3 +1,5 @@
+sudo apt-get install dnsmasq hostapd util-linux  procps haveged procps -y
+
 git clone https://github.com/oblique/create_ap
 cd create_ap
 sudo make install
