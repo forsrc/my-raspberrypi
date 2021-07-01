@@ -1,5 +1,17 @@
-#  /boot/cmdline.txt   +++ cgroup_enable=cpuset cgroup_enable=memory
+sudo nano /boot/cmdline.txt
+cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory
 
+sudo nano /etc/docker/daemon.json
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+
+#########################
 sudo systemctl disable dphys-swapfile.service
 sudo swapoff -a
 
@@ -9,15 +21,16 @@ sudo systemctl start systemd-resolved
 source <(kubectl completion bash)
 echo "source <(kubectl completion bash)" >> ~/.bashrc
 
-sudo kubeadm init  --pod-network-cidr=10.244.0.0/16  --apiserver-advertise-address=0.0.0.0      --apiserver-cert-extra-sans=192.168.1.10 --ignore-preflight-errors=all
-sudo kubeadm init  --pod-network-cidr=10.244.0.0/16  --apiserver-advertise-address=192.168.1.10 --service-cidr 10.96.0.0/12 --apiserver-cert-extra-sans=pi-00,pi-01,p1-02,192.168.1.10,192.168.2.10,10.96.0.1,10.96.0.0 --ignore-preflight-errors=all
+sudo kubeadm init  --pod-network-cidr=10.244.0.0/16  --apiserver-advertise-address=192.168.1.10 --apiserver-cert-extra-sans=192.168.1.10 --ignore-preflight-errors=all
+#sudo kubeadm init  --pod-network-cidr=10.244.0.0/16  --apiserver-advertise-address=0.0.0.0      --apiserver-cert-extra-sans=192.168.1.10 --ignore-preflight-errors=all
+#sudo kubeadm init  --pod-network-cidr=10.244.0.0/16  --apiserver-advertise-address=192.168.1.10 --service-cidr 10.96.0.0/12 --apiserver-cert-extra-sans=pi-00,pi-01,p1-02,192.168.1.10,192.168.2.10,10.96.0.1,10.96.0.0 --ignore-preflight-errors=all
 
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-sudo kubeadm join 192.168.1.10:6443 --token 5g5pwj.anokybmk33r5ebj5 \
-        --discovery-token-ca-cert-hash sha256:ea067633991939b0b5fbde62cf47fdb85da858a23977583cab56df9097713512 --ignore-preflight-errors=all
+sudo kubeadm join 192.168.1.10:6443 --token 0m1i25.ojiuzcua8zogsy4v \
+        --discovery-token-ca-cert-hash sha256:96ac5be3db98162d08a804e695e6237aa08b446200dd4178e99e1e720f5e1dcc
 
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
