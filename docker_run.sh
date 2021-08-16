@@ -6,9 +6,36 @@ docker run -itd --name mysql \
            -e MYSQL_ROOT_PASSWORD=root \
            mysql/mysql-server:latest-aarch64
 
+docker run -itd --name mysql \
+           -p 3306:3306 \
+           -v /docker/mysql/conf.d:/etc/mysql/conf.d \
+           -v /docker/mysql/data:/var/lib/mysql \
+           -e MYSQL_ROOT_PASSWORD=root \
+           mysql/mysql-server:latest-aarch64
+           
+```           
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'root';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
+CREATE USER 'root'@'%' IDENTIFIED BY 'root';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+```
+
+docker run --name phpmyadmin -d --link mysql:db -e MYSQL_ROOT_PASSWORD=root -e PMA_USER=root -e PMA_PASSWORD=root -p 8680:80 phpmyadmin
+
+
+
+
+######################################3
 
 docker run -itd --name postgres \
            -p 5432:5432 \
            -e POSTGRES_PASSWORD=postgres \
            -v /media/nfs/pi/postgres/data:/var/lib/postgresql/data \
+           postgres:latest
+
+
+docker run -itd --name postgres \
+           -p 5432:5432 \
+           -e POSTGRES_PASSWORD=postgres \
+           -v /docker/postgres/data:/var/lib/postgresql/data \
            postgres:latest
