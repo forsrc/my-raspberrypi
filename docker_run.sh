@@ -49,5 +49,5 @@ docker run -itd --name postgres \
 
 docker run -p 6379:6379 --name redis -d redis redis-server --appendonly yes
 
-
+docker run -it --name redis-cli --link redis:redis --rm redis redis-cli -h redis -p 6379
 ############################
