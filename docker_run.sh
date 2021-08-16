@@ -51,3 +51,9 @@ docker run -p 6379:6379 --name redis -d redis redis-server --appendonly yes
 
 docker run -it --name redis-cli --link redis:redis --rm redis redis-cli -h redis -p 6379
 ############################
+
+
+docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" arm64v8/elasticsearch:7.14.0
+docker run --name kibana -p 5601:5601 --link elasticsearch:elasticsearch -e "ELASTICSEARCH_HOSTS=http://elasticsearch:9200" docker.elastic.co/kibana/kibana:7.14.0
+
+
