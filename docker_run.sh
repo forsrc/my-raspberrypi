@@ -30,7 +30,7 @@ docker run --name phpmyadmin -d --link mysql:db -e MYSQL_ROOT_PASSWORD=root -e P
 
 
 
-######################################3
+######################################
 
 docker run -itd --name postgres \
            -p 5432:5432 \
@@ -44,3 +44,10 @@ docker run -itd --name postgres \
            -e POSTGRES_PASSWORD=postgres \
            -v /docker/postgres/data:/var/lib/postgresql/data \
            postgres:latest
+           
+############################
+
+docker run -p 6379:6379 --name redis -d redis redis-server --appendonly yes
+
+
+############################
