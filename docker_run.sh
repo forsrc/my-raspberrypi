@@ -76,7 +76,7 @@ docker run --name jenkins -v /docker/jenkins:/var/jenkins_home -p 6080:8080 -p 5
 ############################
 
 
-sudo docker run --detach \
+sudo docker run -d --privileged \
   --hostname gitlab \
   --publish 7443:443 --publish 7080:80 --publish 7022:22 \
   --name gitlab \
@@ -84,3 +84,6 @@ sudo docker run --detach \
   --volume /docker/gitlab/logs:/var/log/gitlab \
   --volume /docker/gitlab/data:/var/opt/gitlab \
   forsrc/raspbian:gitlab
+  
+docker exec dind sh -c "gitlab-ctl reconfigure"
+docker exec dind sh -c "systemctl enable gitlab-runsvdir.service"
