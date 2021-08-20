@@ -56,4 +56,8 @@ docker run -it --name redis-cli --link redis:redis --rm redis redis-cli -h redis
 docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" arm64v8/elasticsearch:7.14.0
 docker run --name kibana -p 5601:5601 --link elasticsearch:elasticsearch -e "ELASTICSEARCH_HOSTS=http://elasticsearch:9200" docker.elastic.co/kibana/kibana:7.14.0
 
-
+############################
+sudo mkdir -p /docker/jenkins
+sudo chmod -R 777 /docker/jenkins
+docker run --name jenkins -v /docker/jenkins:/var/jenkins_home -p 6080:8080 -p 5000:5000 --privileged --env DOCKER_HOST=tcp://172.17.0.1:2376 jenkins/jenkins:jdk11
+############################
