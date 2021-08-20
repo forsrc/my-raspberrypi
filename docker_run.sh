@@ -75,12 +75,12 @@ sudo chmod -R 777 /docker/jenkins
 docker run --name jenkins -v /docker/jenkins:/var/jenkins_home -p 6080:8080 -p 5000:5000 --privileged --env DOCKER_HOST=tcp://172.17.0.1:2376 jenkins/jenkins:jdk11
 ############################
 
-export GITLAB_HOME=/docker/gitlab
+
 sudo docker run --detach \
-  --hostname gitlab.example.com \
+  --hostname gitlab \
   --publish 7443:443 --publish 7080:80 --publish 7022:22 \
   --name gitlab \
-  --volume $GITLAB_HOME/config:/etc/gitlab \
-  --volume $GITLAB_HOME/logs:/var/log/gitlab \
-  --volume $GITLAB_HOME/data:/var/opt/gitlab \
-  ulm0/gitlab:latest
+  --volume /docker/gitlab/config:/etc/gitlab \
+  --volume /docker/gitlab/logs:/var/log/gitlab \
+  --volume /docker/gitlab/data:/var/opt/gitlab \
+  forsrc/raspbian:gitlab
