@@ -56,6 +56,19 @@ docker run -it --name redis-cli --link redis:redis --rm redis redis-cli -h redis
 docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" arm64v8/elasticsearch:7.14.0
 docker run --name kibana -p 5601:5601 --link elasticsearch:elasticsearch -e "ELASTICSEARCH_HOSTS=http://elasticsearch:9200" docker.elastic.co/kibana/kibana:7.14.0
 
+
+############################
+
+docker run -itd --privileged  \
+-v /docker/dind/:/var/lib/docker \
+-p 2376:2376 \
+--name dind \
+forsrc/raspbian:docker
+
+docker exec dind sh -c "sed -i 's@fd://@tcp://0.0.0.0:2376@g' /lib/systemd/system/docker.service"
+docker restart dind
+docker -H tcp://172.17.0.1:2376 ps
+
 ############################
 sudo mkdir -p /docker/jenkins
 sudo chmod -R 777 /docker/jenkins
