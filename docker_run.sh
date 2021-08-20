@@ -80,10 +80,26 @@ sudo docker run -d --privileged \
   --hostname gitlab \
   --publish 7443:443 --publish 7080:80 --publish 7022:22 \
   --name gitlab \
-  --volume /docker/gitlab/config:/etc/gitlab \
   --volume /docker/gitlab/logs:/var/log/gitlab \
   --volume /docker/gitlab/data:/var/opt/gitlab \
   forsrc/raspbian:gitlab
   
-docker exec dind sh -c "gitlab-ctl reconfigure"
-docker exec dind sh -c "systemctl enable gitlab-runsvdir.service"
+docker exec gitlab sh -c "gitlab-ctl reconfigure"
+docker exec gitlab sh -c "systemctl enable gitlab-runsvdir.service"
+docker exec gitlab sh -c "cat /etc/gitlab/initial_root_password"
+
+```
+/usr/lib/systemd/system/gitlab-runsvdir.service
+
+[Unit]
+Description=GitLab Runit supervision process
+After=multi-user.target
+
+[Service]
+ExecStart=/opt/gitlab/embedded/bin/runsvdir-start
+Restart=always
+TasksMax=4915
+
+[Install]
+WantedBy=multi-user.target
+```
