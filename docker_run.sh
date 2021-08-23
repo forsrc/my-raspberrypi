@@ -103,3 +103,14 @@ TasksMax=4915
 [Install]
 WantedBy=multi-user.target
 ```
+
+#####################################
+
+docker run -dit -p 9080:8080 \
+   --name vscode \
+   -h vscode \
+   -u root \
+   -v /docker/vscode/home:/home \
+   -v /docker/vscode/root:/root \
+   -e PASSWORD=vscode \
+   codercom/code-server
