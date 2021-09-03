@@ -114,3 +114,8 @@ docker run -dit -p 9080:8080 \
    -v /docker/vscode/root:/root \
    -e PASSWORD=vscode \
    codercom/code-server
+
+
+
+#################
+docker run -p 389:389 --name openldap --network bridge --hostname openldap --env LDAP_ORGANISATION="forsrc" --env LDAP_DOMAIN="forsrc.com" --env LDAP_ADMIN_PASSWORD="admin" --detach osixia/openldap
