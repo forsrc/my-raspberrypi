@@ -91,7 +91,7 @@ spec:
     - hard
     - nfsvers=4.1
   nfs:
-    path: /media/nfs/pi/k8s/pv/pv01
+    path: /nfs/pi/k8s/pv/pv01
     server: 192.168.1.10
 EOF
     
