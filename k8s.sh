@@ -70,6 +70,8 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 ## add - --kubelet-insecure-tls
 kubectl edit deployments.apps -n kube-system metrics-server
 - --kubelet-insecure-tls
+- --kubelet-preferred-address-types=InternalIP
+
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
 
