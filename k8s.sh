@@ -29,8 +29,8 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-sudo kubeadm join 192.168.1.10:6443 --token u4vday.rdtx9viwxvuw9w32 \
-        --discovery-token-ca-cert-hash sha256:bd332860d8b1463f0930cabdaf3131e6bf5ee10633bf3e413d4ef9650bd4ac56
+sudo kubeadm join 192.168.1.10:6443 --token 7wvcyy.k835xdsbdg9en6p6 \
+	--discovery-token-ca-cert-hash sha256:3d57bc0d477afbd02888e0cfa43eccbc38e2a77020bfbb4f740e077babcd0759 
 
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
